@@ -1,0 +1,355 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="http://www.tentex.kiev.ua/assets/templates/tentex/js/jquery-1.9.1.js"></script>
+<script src="http://ricostacruz.com/jquery.transit/jquery.transit.min.js"></script>
+<script src="js/jBeep.js"></script>
+<script src="js/budgetCalculator.js"></script>
+
+<link href='http://fonts.googleapis.com/css?family=Cuprum:400,700' rel='stylesheet' type='text/css'>
+<link href='css/budgetCalculator.css' rel='stylesheet' type='text/css'>
+<title>budgetCalculator demo</title>
+<style>
+html{
+	background:url(img/pattern1.png) repeat;	
+}
+*{
+  font-family: 'Cuprum', sans-serif;	
+}
+
+.gray{
+	background:#ccc;
+}
+h2{
+text-align:center;	
+}
+.text-block{
+width:500px;
+margin:60px auto;	
+}
+
+.text-block pre{
+color:#666;
+padding-left:20px;
+border-left:8px solid #36F;	
+margin-left:15px;
+}
+
+</style>
+
+<script>
+
+
+
+function showStatsFunc(answers, $this){
+	jBeep('http://dev.evergreens.com.ua/landingpro/sounds/deckopen2.wav');
+		$('#info').hide();
+		
+		var html='<table>';
+		for(var i=0;i<answers.length;i++){
+			html+='<tr><td width="20px">#'+answers[i][0]+'</td><td style="text-align:left">'+answers[i][2]+'</td><td width="20px">$'+answers[i][3]+'</td></tr>';
+		}
+		html+='<tr><td colspan="2" class="sumlabel">Total:</td><td class="sum">$'+$.fn.budgetCalculator.sumBudget(answers)+'</td></tr></table><p><a class="repeat" href="#"  >Repeat</a></p>';
+		$('#stats').append(html);
+		$('#stats a').click(function(){
+			$this.repeat();
+			return false;
+		});
+		$('#stats').fadeIn(600);	
+}
+
+
+
+function clearStatsFunc(){
+		jBeep('http://dev.evergreens.com.ua/landingpro/sounds/change8.wav');
+		$('#stats').html('<h2>'+$('#stats h2').html()+'</h2>');	
+}
+$(document).ready(function(){
+	
+	$('#budget-calc').budgetCalculator({
+		show_stats_func:showStatsFunc,
+		clear_stats_func:clearStatsFunc,
+		soundURL:'http://dev.evergreens.com.ua/landingpro/sounds/cashkey.wav',
+		currency:'₴',
+		currency_pos:'post'
+		});
+		
+		$('#budget-calc2').budgetCalculator({
+		currency:'$',
+		});
+	
+});
+</script>
+
+</head>
+
+<body>
+<div class="text-block">
+<h1>Budget calculator sample</h1>
+<p>Extended settings:</p>
+<pre>
+$(document).ready(function(){
+	$('#budget-calc').budgetCalculator({
+		show_stats_func:showStatsFunc, //custom show stat function with repeat posibility
+		clear_stats_func:clearStatsFunc, //custom clear stats function
+		soundURL:'http://dev.evergreens.com.ua/landingpro/sounds/cashkey.wav',
+		currency:'₴',
+		currency_pos:'post'
+		});
+});
+</pre>
+
+</div>
+<div id="budget-calc" class="calc-container">
+
+<div id="back-block" style="display:none">
+<p>< Back</p>
+</div>
+<div id="budget-block" style="display:none">
+<p>Rought budget:</p>
+<div class="informer"></div>
+</div>
+
+<div id="questions-list">
+
+<!--question 1-->
+<div id="q1" class="question wide-block"  qid='1'>
+<h2>Header question 1</h2>
+<div class="flippers">
+
+<div id="a1" class="answer-block" aid='1' price='50'>
+<div class="answer-img">1</div>
+<div class="selected-img" style="display:none"></div>
+<div class="answer-title">What you want 1</div>
+</div><!--answer-block-->
+
+<div id="a2" class="answer-block" aid='2' price='100'>
+<div class="answer-img">2</div>
+<div class="selected-img" style="display:none"></div>
+<div class="answer-title">What you want 2</div>
+</div><!--answer-block-->
+
+<div id="a3" class="answer-block" aid='3'  price='200'>
+<div class="answer-img">3</div>
+<div class="selected-img" style="display:none"></div>
+<div class="answer-title">What you want 3</div>
+</div><!--answer-block-->
+
+</div><!--flippers-->
+</div><!--question 1 wide-block-->
+
+
+
+<!--question 2-->
+<div id="q2" class="question wide-block"  qid='2' style="display:none">
+<h2>Header question 2</h2>
+<div class="flippers">
+
+<div id="a1" class="answer-block" aid='1' price='50'>
+<div class="answer-img">1</div>
+<div class="selected-img" style="display:none"></div>
+<div class="answer-title">Lala 1</div>
+</div><!--answer-block-->
+
+<div id="a2" class="answer-block" aid='2' price='100'>
+<div class="answer-img">2</div>
+<div class="selected-img" style="display:none"></div>
+<div class="answer-title">Blabla 2</div>
+</div><!--answer-block-->
+
+
+</div><!--flippers-->
+</div><!--question 2 wide-block-->
+
+
+
+<!--question 3-->
+<div id="q3" class="question wide-block"  qid='3' style="display:none">
+<h2>Header question 3</h2>
+<div class="flippers">
+
+<div id="a1" class="answer-block" aid='1' price='50'>
+<div class="answer-img">1</div>
+<div class="selected-img" ></div>
+<div class="answer-title">Yoyo 1</div>
+</div><!--answer-block-->
+
+<div id="a2" class="answer-block" aid='2' price='100'>
+<div class="answer-img">2</div>
+<div class="selected-img" ></div>
+<div class="answer-title">Yahooo 2</div>
+</div><!--answer-block-->
+
+<div id="a3" class="answer-block" aid='3'  price='200'>
+<div class="answer-img">3</div>
+<div class="selected-img"></div>
+<div class="answer-title">Google 3</div>
+</div><!--answer-block-->
+
+</div><!--flippers-->
+</div><!--question 3 wide-block-->
+
+
+<!--question 4-->
+<div id="q4" class="question wide-block"  qid='4' style="display:none">
+<h2>Header question 4</h2>
+<div class="flippers">
+
+<div id="a1" class="answer-block" aid='1' price='50'>
+<div class="answer-img">1</div>
+<div class="selected-img" ></div>
+<div class="answer-title">FFFa 1</div>
+</div><!--answer-block-->
+
+<div id="a2" class="answer-block" aid='2' price='100'>
+<div class="answer-img">2</div>
+<div class="selected-img" ></div>
+<div class="answer-title">Yakaboo 2</div>
+</div><!--answer-block-->
+
+<div id="a3" class="answer-block" aid='3'  price='200'>
+<div class="answer-img">3</div>
+<div class="selected-img"></div>
+<div class="answer-title">Bizoon 3</div>
+</div><!--answer-block-->
+
+</div><!--flippers-->
+</div><!--question 4 wide-block-->
+
+</div> <!--questions-list-->
+
+<div id="info" class="wide-block gray" style="display:none">
+</div><!--info-->
+
+<div id="stats" class="wide-block" style="display:none">
+<h2>Your stats</h2>
+</div><!--info-->
+
+
+</div><!--budget-calc-->
+
+
+<div class="text-block">
+<p>Simple settings, no sound, only currency set. Default dummy show stats:</p>
+<pre>
+$(document).ready(function(){
+	$('#budget-calc2').budgetCalculator({
+		currency:'$',
+	 });
+});
+</pre>
+
+</div>
+
+<div id="budget-calc2" class="calc-container">
+
+<div id="back-block" style="display:none">
+<p>< Back</p>
+</div>
+<div id="budget-block" style="display:none">
+<p>Rought budget:</p>
+<div class="informer"></div>
+</div>
+
+<div id="questions-list">
+
+<!--question 1-->
+<div id="q1" class="question wide-block"  qid='1'>
+<h2>Header question 1</h2>
+<div class="flippers">
+
+<div id="a1" class="answer-block" aid='1' price='50'>
+<div class="answer-img">1</div>
+<div class="selected-img" style="display:none"></div>
+<div class="answer-title">What you want 1</div>
+</div><!--answer-block-->
+
+<div id="a2" class="answer-block" aid='2' price='100'>
+<div class="answer-img">2</div>
+<div class="selected-img" style="display:none"></div>
+<div class="answer-title">What you want 2</div>
+</div><!--answer-block-->
+
+<div id="a3" class="answer-block" aid='3'  price='200'>
+<div class="answer-img">3</div>
+<div class="selected-img" style="display:none"></div>
+<div class="answer-title">What you want 3</div>
+</div><!--answer-block-->
+
+</div><!--flippers-->
+</div><!--question 1 wide-block-->
+
+
+
+<!--question 2-->
+<div id="q2" class="question wide-block"  qid='2' style="display:none">
+<h2>Header question 2</h2>
+<div class="flippers">
+
+<div id="a1" class="answer-block" aid='1' price='50'>
+<div class="answer-img">1</div>
+<div class="selected-img" style="display:none"></div>
+<div class="answer-title">Lala 1</div>
+</div><!--answer-block-->
+
+<div id="a2" class="answer-block" aid='2' price='100'>
+<div class="answer-img">2</div>
+<div class="selected-img" style="display:none"></div>
+<div class="answer-title">Blabla 2</div>
+</div><!--answer-block-->
+
+<div id="a3" class="answer-block" aid='3'  price='200'>
+<div class="answer-img">3</div>
+<div class="selected-img" style="display:none"></div>
+<div class="answer-title">Yo,man 3</div>
+</div><!--answer-block-->
+
+</div><!--flippers-->
+</div><!--question 2 wide-block-->
+
+
+
+<!--question 3-->
+<div id="q3" class="question wide-block"  qid='3' style="display:none">
+<h2>Header question 3</h2>
+<div class="flippers">
+
+<div id="a1" class="answer-block" aid='1' price='50'>
+<div class="answer-img">1</div>
+<div class="selected-img" ></div>
+<div class="answer-title">Yoyo 1</div>
+</div><!--answer-block-->
+
+<div id="a2" class="answer-block" aid='2' price='100'>
+<div class="answer-img">2</div>
+<div class="selected-img" ></div>
+<div class="answer-title">Yahooo 2</div>
+</div><!--answer-block-->
+
+<div id="a3" class="answer-block" aid='3'  price='200'>
+<div class="answer-img">3</div>
+<div class="selected-img"></div>
+<div class="answer-title">Google 3</div>
+</div><!--answer-block-->
+
+</div><!--flippers-->
+</div><!--question 3 wide-block-->
+
+
+
+</div> <!--questions-list-->
+
+<div id="info" class="wide-block gray" style="display:none">
+</div><!--info-->
+
+<div id="stats" class="wide-block" style="display:none">
+<h2>Your stats</h2>
+</div><!--info-->
+
+
+</div><!--budget-calc-->
+
+
+</body>
+</html>
