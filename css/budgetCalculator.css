@@ -1,0 +1,125 @@
+@charset "utf-8";
+/* budgetCalculator CSS */
+/* @author Sergey Kravtsov <skravtsov@evergreens.com.ua>
+ * Copyright (c) 2013 Sergey Kravtsov - released under MIT License
+ */
+
+
+.calc-container.wide-block{
+width:800px;
+margin:0 auto;	
+}
+.calc-container .flippers{
+padding:10px 20px;	
+text-align:center;
+}
+.calc-container .answer-block{
+width:200px;
+height:200px;
+text-align:center;	
+display:inline-block;
+padding:20px;
+}
+
+.calc-container .answer-img{
+background:#0CF;
+font-size:12px;
+padding:90px;
+color:#fff;
+border-radius:300px;
+cursor:pointer;	
+}
+.calc-container .answer-img:hover,.selected-img:hover{
+opacity:0.8;	
+}
+.calc-container .selected-img{
+background:#090;
+font-size:12px;
+width:200px;
+height:200px;
+color:#fff;
+border-radius:300px;	
+ cursor:pointer;
+ background:url(../img/ok.png) center center no-repeat;
+ display:none;
+}
+.answer-title{
+font-size:15px;
+color:#333;
+text-align:center;	
+padding:20px 0px;
+}
+
+.calc-container #stats{
+text-align:center;	
+}
+
+.calc-container #stats table{
+width:400px;
+margin:0 auto;
+font-size:18px;	
+}
+
+.calc-container #stats td{
+ font-size:18px;
+ padding:15px;	
+}
+.calc-container #stats  td.sum{
+  font-size:22px;
+  color:#060;	
+}
+
+.calc-container #stats td.sumlabel{
+  color:#666;
+  text-align:right;	
+}
+.calc-container #back-block:hover{
+background:#ccc;	
+}
+.calc-container #back-block{
+ position:absolute;
+ left:0px;
+ top:150px;
+ border-top-right-radius:15px;
+ border-bottom-right-radius:15px;
+ background:#ddd;
+ height:30px;
+ width:100px;
+ padding:15px 30px 30px 30px;
+ text-align:center;	
+ cursor:pointer;
+}
+
+.calc-container #budget-block{
+ position:absolute;
+ right:0px;
+ top:100px;
+ border-top-left-radius:15px;
+ border-bottom-left-radius:15px;
+ background:#ddd;
+ height:90px;
+ width:100px;
+ padding:15px 30px 30px 30px;
+ text-align:center;	
+}
+.calc-container #budget-block p{
+	color:#444;
+	font-size:12px;
+	margin-bottom:15px;
+}
+.calc-container #budget-block .informer{
+	border-radius:200px;
+	width:40px;
+	height:20px;	
+	text-align:center;
+	color:#090;
+	font-size:60px;
+	text-shadow:1px 1px 1px #fff;
+	
+	
+}
+
+.calc-container{
+	position:relative;	
+}
+
